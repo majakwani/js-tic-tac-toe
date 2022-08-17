@@ -38,6 +38,7 @@ body{
     height: 540px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    position: relative;
 }
 
 .gameboard-cell{
@@ -65,9 +66,75 @@ body{
 }
 
 button{
-    width: 120px;
+    background-color: white;
+    width: 140px;
     height: 40px;
     margin: 6px;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 2rem;
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.4s;
+}
+
+.x::before, .x::after{
+    position: absolute;
+    content: '';
+    height: 120px;
+    width: 18.5px;
+    background-color: black;
+}
+
+.x::before{
+    transform: rotate(45deg);
+}
+
+.x::after{
+    transform: rotate(-45deg);
+}
+
+.o::before, .o::after{
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.o::before{
+    width: 120px;
+    height: 120px;
+    background-color: black;
+}
+
+.o::after{
+    width: 90px;
+    height: 90px;
+    background-color: white;
+}
+
+.winning-message{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+form{
+    background-color: white;
+    width: 450px;
+    height: 200px;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+form > div > p, form > div > input{
+    font-size: 1.9rem;
+    border-radius: 8px;
+    margin: 4px;
+    padding: 5px;
 }
