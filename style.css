@@ -43,6 +43,7 @@ body{
 
 .gameboard-cell{
     border: 2px solid black;
+    cursor: pointer;
 }
 
 .gameboard-cell:first-child,
@@ -113,6 +114,10 @@ button:hover{
     width: 90px;
     height: 90px;
     background-color: white;
+}
+
+.gameboard-cell.x, .gameboard-cell.o{
+    cursor: not-allowed;
 }
 
 .winning-message{
