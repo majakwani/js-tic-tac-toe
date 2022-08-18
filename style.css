@@ -143,3 +143,23 @@ form > div > p, form > div > input{
     margin: 4px;
     padding: 5px;
 }
+
+.endMessage{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+}
+
+.endMessage > p{
+    color: white;
+    font-size: 3rem;
+    margin: 10px;
+}
+
+.endMessage > button:hover{
+    border: 2px solid white;
+}
