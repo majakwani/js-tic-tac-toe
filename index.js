@@ -35,10 +35,12 @@ function readingGameBoard(mark, index){
     }
 }    
 
+//places a mark on gameboard
 function placeMark(cell, mark){
     cell.classList.add(mark)
 }
 
+// checks for win, then checks for draw and then switch turns
 function switchTurns(index){
     let name = "";
     let module = Turn ? gameBoardModule.gameBoardO : gameBoardModule.gameBoardX;
@@ -58,6 +60,7 @@ function switchTurns(index){
     Turn = !Turn
 }
 
+// Handles the click of user
 function handleEvent(e){
     let cell = e.target;
     let cellid = e.target.id;
@@ -69,6 +72,7 @@ function handleEvent(e){
     switchTurns(number)
 }
 
+// Game will only start when this function is called
 function gameStart(){
     const cell = document.querySelectorAll('.gameboard-cell');
     cell.forEach(element => {
@@ -97,6 +101,7 @@ function addNames(){
     gameStart();
 }
 
+// Creates an input form for players user names
 function formCreation(){
     const body = document.body;
     const form = document.createElement('div');
@@ -117,16 +122,19 @@ function formCreation(){
     body.append(form);
 }
 
+// Reloads the page to start a new game
 function newGame(){
     location.reload();
 }
 
+// Script for checking who won the game, if someone won the game.
 function checkForWin(turn, name){
-    let winningCombinations = ["012", "345", "678" , "036", "147", "258" , "048", "246"];
     let finalString = "";
+    let winningCombinations = ["012", "345", "678" , "036", "147", "258" , "048", "246"];
     turn.forEach(element => {
-       finalString = finalString + element; 
+        finalString = finalString + element;
     });
+    console.log(finalString)
     winningCombinations.forEach(element => {
         if(finalString.includes(element)){
             const winningMessage = document.createElement("div");
@@ -138,6 +146,7 @@ function checkForWin(turn, name){
     });
 }
 
+// Script for checking when the game is drawn
 function checkForDraw(){
     if(gameBoardModule.gameBoardX.length == 5 && gameBoardModule.gameBoardO.length == 4){
         const winningMessage = document.createElement("div");
