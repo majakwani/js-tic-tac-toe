@@ -48,7 +48,8 @@ function switchTurns(index){
     else if (index == "1"){
         name = gameBoardModule.players[0].name;
     }
-    checkForWin(module, name)
+    checkForWin(module, name);
+    checkForDraw();
     message.innerHTML = `${gameBoardModule.players[index].name}'s Turn, Mark = ${gameBoardModule.players[index].playerMark}`;
     Turn = !Turn
 }
@@ -144,5 +145,14 @@ function checkForWin(turn, name){
             }
         });
     });
-    console.log(gameBoardModule.gameBoardO, gameBoardModule.gameBoardX)
+}
+
+function checkForDraw(){
+    if(gameBoardModule.gameBoardX.length == 5 && gameBoardModule.gameBoardO.length == 4){
+        const winningMessage = document.createElement("div");
+        winningMessage.classList.add("endMessage" , "flex");
+        winningMessage.innerHTML = `        <p>It's a Draw.</p>
+        <button type="button" onclick = "newGame()" >Play Again</button>`
+        document.body.append(winningMessage);
+    }
 }
