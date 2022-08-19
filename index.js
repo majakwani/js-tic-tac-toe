@@ -42,6 +42,10 @@ function placeMark(cell, mark){
 function switchTurns(index){
     let name = "";
     let module = Turn ? gameBoardModule.gameBoardO : gameBoardModule.gameBoardX;
+    module.sort(function(a, b){return a - b});
+    module.forEach(element => {
+        element = element.toString();
+    });
     if(index == "0"){
         name = gameBoardModule.players[1].name;
     }
@@ -118,32 +122,19 @@ function newGame(){
 }
 
 function checkForWin(turn, name){
-    let winningCombinations = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ]
+    let winningCombinations = ["012", "345", "678" , "036", "147", "258" , "048", "246"];
+    let finalString = "";
+    turn.forEach(element => {
+       finalString = finalString + element; 
+    });
     winningCombinations.forEach(element => {
-        let count = 0;
-        element.forEach(value => {
-            turn.forEach(check => {
-                if(value == check){
-                    count = count + 1;
-                }
-            });
-            if(count == 3){
-                const winningMessage = document.createElement("div");
-                winningMessage.classList.add("endMessage" , "flex");
-                winningMessage.innerHTML = `        <p>${name} Won</p>
-                <button type="button" onclick = "newGame()" >Play Again</button>`
-                document.body.append(winningMessage);
-            }
-        });
+        if(finalString.includes(element)){
+            const winningMessage = document.createElement("div");
+            winningMessage.classList.add("endMessage" , "flex");
+            winningMessage.innerHTML = `        <p>${name} Won</p>
+            <button type="button" onclick = "newGame()" >Play Again</button>`
+            document.body.append(winningMessage);
+        }
     });
 }
 
